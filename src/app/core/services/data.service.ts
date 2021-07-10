@@ -23,22 +23,22 @@ export class DataService {
   }
 
   get(uri: string) {
-  
+
     return this._http.get(environment.BASE_API + uri, { headers: this.headers })
       .pipe(catchError(this.handleError));
   }
   post(uri: string, data?: any) {
-   
+
     return this._http.post(environment.BASE_API + uri, data, { headers: this.headers })
       .pipe(catchError(this.handleError));
   }
   put(uri: string, data?: any) {
-    
+
     return this._http.put(environment.BASE_API + uri, data, { headers: this.headers })
       .pipe(catchError(this.handleError));
   }
   delete(uri: string, key: string, id: string) {
-  
+
     return this._http.delete(environment.BASE_API + uri + "/?" + key + "=" + id, { headers: this.headers })
       .pipe(catchError(this.handleError));
   }
@@ -71,7 +71,7 @@ export class DataService {
     else {
       let errMsg = JSON.parse(error._body).Message;
       this._notificationService.printErrorMessage(errMsg);
-
+      console.log(errMsg);
       return Observable.throw(errMsg);
     }
 

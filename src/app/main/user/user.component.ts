@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm,FormBuilder, FormGroup  } from '@angular/forms';
 import { IMultiSelectOption } from 'angular2-dropdown-multiselect';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { MessageContstants } from 'src/app/core/common/message.constants';
@@ -9,8 +9,9 @@ import { NotificationService } from 'src/app/core/services/notification.service'
 import { UploadService } from 'src/app/core/services/upload.service';
 import { UtilityService } from 'src/app/core/services/utility.service';
 import { environment } from 'src/environments/environment';
-
-declare var moment: any;
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as moment from 'moment';
+import { DaterangepickerConfig } from 'ng2-daterangepicker';
 
 @Component({
   selector: 'app-user',
@@ -34,6 +35,8 @@ export class UserComponent implements OnInit {
   public baseFolder: string = environment.BASE_API;
   public allRoles: IMultiSelectOption[] = [];
   public roles: any[];
+  public formUpload: FormGroup;
+  private headers = new HttpHeaders();
 
   public dateOptions: any = {
     locale: { format: 'DD/MM/YYYY' },
@@ -44,16 +47,32 @@ export class UserComponent implements OnInit {
   constructor(private _dataService: DataService,
     private _notificationService: NotificationService,
     private _utilityService: UtilityService,
-    private _uploadService: UploadService, public _authenService: AuthenService) {
+    private _uploadService: UploadService,
+    public _authenService: AuthenService,
+    private daterangepickerOptions: DaterangepickerConfig,
+    public fb: FormBuilder,
+    private http: HttpClient) {
 
     if (_authenService.checkAccess('USER') == false) {
       _utilityService.navigateToLogin();
     }
+
+    this.daterangepickerOptions.settings = {
+      locale: { format: 'DD-MM-YYYY' },
+      alwaysShowCalendars: false
+    }
+
+    this.headers = this.headers.set("Authorization", "Bearer " + _authenService.getLoggedInUser().access_token);
+
+    this.formUpload = this.fb.group({
+      avatar: [null]
+    })
   }
 
   ngOnInit() {
     this.loadRoles();
     this.loadData();
+
   }
 
   loadData() {
@@ -98,17 +117,37 @@ export class UserComponent implements OnInit {
     this.loadUserDetail(id);
     this.modalAddEdit.show();
   }
+
+  uploadFile(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.formUpload.patchValue({
+      avatar: file
+    });
+    this.formUpload.get('avatar').updateValueAndValidity()
+    console.log(this.formUpload.value);
+  }
   saveChange(form: NgForm) {
     if (form.valid) {
       this.entity.Roles = this.myRoles;
       let fi = this.avatar.nativeElement;
       if (fi.files.length > 0) {
-        this._uploadService.postWithFile('/api/upload/saveImage?type=avatar', null, fi.files)
-          .then((imageUrl: string) => {
-            this.entity.Avatar = imageUrl;
-          }).then(() => {
-            this.saveData(form);
-          });
+        // this._uploadService.postWithFile('/api/upload/saveImage?type=avatar', null, fi.files)
+        //   .then((imageUrl: string) => {
+        //     this.entity.Avatar = imageUrl;
+        //   }).then(() => {
+        //     this.saveData(form);
+        //   });
+          var formData: any = new FormData();
+          formData.append("avatar", this.formUpload.get('avatar').value);
+
+          this.http.post('http://localhost:5000/api/upload/saveImage?type=avatar', formData, { headers: this.headers }).subscribe(
+            (response) => {
+              console.log(response);
+              this.entity.Avatar = response;
+              this.saveData(form);
+            },
+            (error) => console.log(error)
+          )
       }
       else {
         this.saveData(form);
@@ -133,6 +172,14 @@ export class UserComponent implements OnInit {
           form.resetForm();
           this._notificationService.printSuccessMessage(MessageContstants.UPDATED_OK_MSG);
         }, error => this._dataService.handleError(error));
+    }
+  }
+  deleteItem2(id: any) {
+    if(confirm(MessageContstants.CONFIRM_DELETE_MSG)) {
+      this._dataService.delete('/api/appUser/delete', 'id', id).subscribe((response: Response) => {
+        this._notificationService.printSuccessMessage(MessageContstants.DELETED_OK_MSG);
+        this.loadData();
+      });
     }
   }
   deleteItem(id: any) {

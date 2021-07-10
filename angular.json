@@ -29,14 +29,17 @@
               "node_modules/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
               "node_modules/admin-lte/dist/css/adminlte.min.css",
               "node_modules/alertifyjs/build/css/alertify.css",
-              "node_modules/alertifyjs/build/css/themes/default.css"
+              "node_modules/alertifyjs/build/css/themes/default.css",
+              "node_modules/ng2-daterangepicker/assets/daterangepicker.css",
+              "node_modules/@circlon/angular-tree-component/css/angular-tree-component.css"
             ],
             "scripts": [
               "node_modules/admin-lte/plugins/jquery/jquery.min.js",
               "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js",
               "node_modules/admin-lte/dist/js/adminlte.min.js",
               "node_modules/alertifyjs/build/alertify.js",
-              "node_modules/admin-lte/dist/js/demo.js"
+              "node_modules/admin-lte/dist/js/demo.js",
+              "node_modules/moment/moment.js"
             ]
           },
           "configurations": {

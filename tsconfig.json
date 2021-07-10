@@ -23,5 +23,6 @@
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "allowSyntheticDefaultImports": true
 }

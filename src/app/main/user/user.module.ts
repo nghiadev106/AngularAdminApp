@@ -7,7 +7,7 @@ import { NotificationService } from '../../core/services/notification.service';
 import { UploadService } from '../../core/services/upload.service';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MultiselectDropdownModule } from 'angular2-dropdown-multiselect';
 import { Daterangepicker } from 'ng2-daterangepicker';
@@ -28,6 +28,6 @@ const userRoutes: Routes = [
     RouterModule.forChild(userRoutes)
   ],
   declarations: [UserComponent],
-  providers: [DataService, NotificationService,UploadService]
+  providers: [DataService, NotificationService,UploadService,FormBuilder]
 })
 export class UserModule { }
