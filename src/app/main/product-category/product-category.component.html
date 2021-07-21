@@ -1,1 +1,125 @@
-<p>product-category works!</p>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+      <div class="row mb-2">
+          <div class="col-sm-6">
+              <h1>Danh sách danh mục sản phẩm</h1>
+          </div>
+          <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                  <li class="breadcrumb-item active">Danh mục sản phẩm</li>
+              </ol>
+          </div>
+      </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<div class="card">
+  <div class="card-body row">
+      <div class="col-md-6">
+          <button class="btn btn-success" (click)="showAddModal()">Thêm mới</button>
+      </div>
+      <div class="col-md-6" style="padding: 0;margin-bottom: 10px;">
+          <div class="input-group">
+              <input type="text" class="form-control" name="filter" (keyup.enter)="loadData()" [(ngModel)]="filter" placeholder="Từ khóa">
+              <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" (click)="loadData()">Tìm kiếm</button>
+              </span>
+          </div><!-- /input-group -->
+      </div>
+
+      <table id="example1" class="table table-bordered table-striped">
+          <thead>
+              <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Mô tả</th>
+                <th>Trạng thái</th>
+                  <th>#</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of categories">
+              <td>{{item.ID}}</td>
+              <td>{{item.Name}}</td>
+              <td>{{item.Description}}</td>
+              <td>{{item.Status}}</td>
+              <td>
+                <button class="btn btn-primary" (click)="showEditModal(item.ID)"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-danger" (click)="deleteItem(item.ID)"><i class="fa fa-trash"></i></button>
+
+              </td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+              <tr>
+                  <!-- <td colspan="4"><span class="pull-right">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</span></td> -->
+              </tr>
+          </tfoot>
+      </table>
+
+  </div>
+  <!-- /.card-body -->
+  <div class="card-footer">
+    <div class="col-md-12">
+      <pagination [boundaryLinks]="true" [itemsPerPage]="pageSize" (pageChanged)="pageChanged($event)" [totalItems]="totalRow"
+        [(ngModel)]="pageIndex" class="pagination-sm" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+    </div>
+  </div><!-- /.box-footer-->
+</div>
+
+<!--Modal add and edit-->
+<div bsModal #modalAddEdit="bs-modal" class="modal fade" tabindex="-1" item="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Thêm/Sửa danh mục</h4>
+        <button type="button" class="close pull-right" (click)="modalAddEdit.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal form-label-left" novalidate #addEditForm="ngForm" (ngSubmit)="saveChange(addEditForm.valid)" *ngIf="entity">
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên danh mục</label>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <input type="hidden" [(ngModel)]="entity.Id" name="id" />
+              <input type="text" #name="ngModel" [(ngModel)]="entity.Name" required minlength="3" name="name" class="form-control">
+              <small [hidden]="name.valid || (name.pristine && !addEditForm.submitted)" class="text-danger">
+                Bạn phải nhập tên ít nhất 3 ký tự
+              </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Alias</label>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <input class="form-control" #alias="ngModel" required [(ngModel)]="entity.Alias" name="alias" rows="3">
+              <small [hidden]="alias.valid || (alias.pristine && !addEditForm.submitted)" class="text-danger">
+                Bạn phải nhập mô tả
+              </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Mô tả </label>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <textarea class="form-control" #description="ngModel" required [(ngModel)]="entity.Description" name="description" rows="3"></textarea>
+              <small [hidden]="description.valid || (description.pristine && !addEditForm.submitted)" class="text-danger">
+                Bạn phải nhập mô tả
+              </small>
+            </div>
+          </div>
+          <div class="ln_solid"></div>
+          <div class="form-group">
+            <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
+              <button type="button" (click)="modalAddEdit.hide()" class="btn btn-primary">Hủy bỏ</button>
+              <button type="submit" class="btn btn-success" [disabled]="!addEditForm.form.valid">Cập nhật</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

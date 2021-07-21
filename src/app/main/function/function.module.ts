@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FunctionComponent } from './function.component';
 import { RouterModule, Routes } from '@angular/router';
-//import { TreeModule } from 'angular-tree-component';
 import { TreeDraggedElement, TreeModule } from '@circlon/angular-tree-component';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap';
