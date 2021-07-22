@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@circlon/angular-tree-component": "^11.0.4",
+    "@tinymce/tinymce-angular": "^4.2.4",
     "admin-lte": "^3.1.0",
     "alertifyjs": "^1.13.1",
     "angular2-dropdown-multiselect": "^1.2.1",

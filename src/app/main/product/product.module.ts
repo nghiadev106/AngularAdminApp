@@ -9,7 +9,7 @@ import { DataService } from "./../../core/services/data.service";
 import { UtilityService } from "./../../core/services/utility.service";
 import { UploadService } from "./../../core/services/upload.service";
 import { Daterangepicker } from "ng2-daterangepicker";
-//import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { EditorModule } from "@tinymce/tinymce-angular";
 
 const productRoutes: Routes = [
   //localhost:4200/main/home
@@ -26,7 +26,7 @@ const productRoutes: Routes = [
     PaginationModule,
     ModalModule.forRoot(),
     Daterangepicker,
-    // MultiselectDropdownModule,
+    EditorModule,
     RouterModule.forChild(productRoutes),
   ],
   providers: [DataService, UtilityService, UploadService, FormBuilder],

@@ -239,7 +239,24 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Chi tiết sản phẩm</label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
-                  <textarea #content="ngModel" [(ngModel)]="entity.Content" name="content"></textarea>
+                  <!-- <textarea #content="ngModel" [(ngModel)]="entity.Content" name="content"></textarea> -->
+                   <editor
+                    apiKey="4iy92aaaq3ych0rgy6691p8mjognpx10pot9qz3l0gbxqqah"
+                    #content="ngModel" [(ngModel)]="entity.Content" name="content"
+                      [init]="{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                          'advlist autolink lists link image charmap print preview anchor',
+                          'searchreplace visualblocks code fullscreen',
+                          'insertdatetime media table paste code help wordcount'
+                        ],
+                        toolbar:
+                          'undo redo | formatselect | bold italic backcolor | \
+                          alignleft aligncenter alignright alignjustify | \
+                          bullist numlist outdent indent | removeformat | help'
+                      }"
+                    ></editor>
                 </div>
               </div>
               <div class="form-group">

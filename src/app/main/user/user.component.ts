@@ -10,8 +10,8 @@ import { UploadService } from 'src/app/core/services/upload.service';
 import { UtilityService } from 'src/app/core/services/utility.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import * as moment from 'moment';
 import { DaterangepickerConfig } from 'ng2-daterangepicker';
+import * as moment from "moment";
 
 @Component({
   selector: 'app-user',
