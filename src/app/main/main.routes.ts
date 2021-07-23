@@ -55,8 +55,13 @@ export const mainRoutes: Routes = [
       {
         path: "order",
         loadChildren: () =>
-          import("src/app/main/order/order.module").then(
-            (m) => m.OrderModule
+          import("src/app/main/order/order.module").then((m) => m.OrderModule),
+      },
+      {
+        path: "announcement",
+        loadChildren: () =>
+          import("src/app/main/announcement/announcement.module").then(
+            (m) => m.AnnouncementModule
           ),
       },
 

@@ -28,6 +28,7 @@
     "ng2-daterangepicker": "^3.0.1",
     "ngx-bootstrap": "^5.2.0",
     "rxjs": "~6.4.0",
+    "signalr": "^2.4.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

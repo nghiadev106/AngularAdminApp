@@ -10,7 +10,7 @@ export class SignalrService {
 
   // Declare the variables
   private proxy: any;
-  private proxyName: string = 'teduShopHub';
+  private proxyName: string = 'fShopHub';
   private connection: any;
   // create the Event Emitter
   public announcementReceived: EventEmitter<any>;
