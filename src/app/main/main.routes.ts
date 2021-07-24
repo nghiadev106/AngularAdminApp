@@ -64,7 +64,13 @@ export const mainRoutes: Routes = [
             (m) => m.AnnouncementModule
           ),
       },
-
+      {
+        path: "report",
+        loadChildren: () =>
+          import("src/app/main/report/report.module").then(
+            (m) => m.ReportModule
+          ),
+      },
       // { path: 'announcement', loadChildren: './announcement/announcement.module#AnnouncementModule' },
 
       // { path: 'report', loadChildren: './report/report.module#ReportModule' }

@@ -72,21 +72,18 @@ export class OrderComponent implements OnInit {
     this.search();
   }
 
-  public delete(id: string) {
-    this.notificationService.printConfirmationDialog(
-      MessageContstants.CONFIRM_DELETE_MSG,
-      () => {
-        this._dataService.delete("/api/order/delete", "id", id).subscribe(
-          (response: any) => {
-            this.notificationService.printSuccessMessage(
-              MessageContstants.DELETED_OK_MSG
-            );
-            this.search();
-          },
-          (error) => this._dataService.handleError(error)
-        );
-      }
-    );
+  delete(id: string) {
+    if (confirm(MessageContstants.CONFIRM_DELETE_MSG)) {
+      this._dataService.delete("/api/order/delete", "id", id).subscribe(
+        (response: Response) => {
+          this.search();
+          this.notificationService.printSuccessMessage(
+            MessageContstants.DELETED_OK_MSG
+          );
+        },
+        (error) => this._dataService.handleError(error)
+      );
+    }
   }
   public pageChanged(event: any): void {
     this.pageIndex = event.page;

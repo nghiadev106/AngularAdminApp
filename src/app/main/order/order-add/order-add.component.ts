@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap';
-import { MessageContstants } from 'src/app/core/common/message.constants';
-import { DataService } from 'src/app/core/services/data.service';
-import { NotificationService } from 'src/app/core/services/notification.service';
-import { UtilityService } from 'src/app/core/services/utility.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ModalDirective } from "ngx-bootstrap";
+import { MessageContstants } from "src/app/core/common/message.constants";
+import { DataService } from "src/app/core/services/data.service";
+import { NotificationService } from "src/app/core/services/notification.service";
+import { UtilityService } from "src/app/core/services/utility.service";
 
 @Component({
   selector: "app-order-add",
@@ -22,7 +22,7 @@ export class OrderAddComponent implements OnInit {
   public orderDetails: any[] = [];
   public detailEntity: any = {
     ProductID: 0,
-    Quantity: 0,
+    Quantity: 1,
     Price: 0,
   };
 
@@ -80,7 +80,7 @@ export class OrderAddComponent implements OnInit {
             this.notificationService.printSuccessMessage(
               MessageContstants.CREATED_OK_MSG
             );
-            this.utilityService.navigate('/main/order');
+            this.utilityService.navigate("/main/order");
           },
           (error) => this._dataService.handleError(error)
         );
@@ -98,6 +98,16 @@ export class OrderAddComponent implements OnInit {
         Quantity: 0,
         Price: 0,
       };
+    }
+  }
+
+  public onOptionsSelected(event) {
+    const productId = event.target.value;
+    let product = this.products.find((x) => x.ID == productId);
+    if (product.PromotionPrice) {
+      this.detailEntity.Price = product.PromotionPrice;
+    }else{
+      this.detailEntity.Price = product.Price;
     }
   }
 

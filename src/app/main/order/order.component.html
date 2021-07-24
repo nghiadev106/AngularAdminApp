@@ -3,12 +3,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Danh sách nhóm quyền</h1>
+        <h1>Danh sách hóa đơn</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-          <li class="breadcrumb-item active">Nhóm quyền</li>
+          <li class="breadcrumb-item active">Hóa đơn</li>
         </ol>
       </div>
     </div>
@@ -98,7 +98,7 @@
         <tr *ngFor="let item of orders">
           <td>{{ item.CustomerName }}</td>
           <td>{{ item.CustomerMobile }}</td>
-          <td>{{ item.CreatedDate | date }}</td>
+          <td>{{ item.CreatedDate | date: "dd-MM-yyyy" }}</td>
           <td *ngIf="item.Status == true">Hợp lệ</td>
           <td *ngIf="item.Status == false">Không hợp lệ</td>
           <td>
@@ -110,7 +110,7 @@
               title="Chi tiết hóa đơn"
               *ngIf="_authenService.hasPermission('ORDER', 'update')"
             >
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i
+              <i class="fa fa-edit" aria-hidden="true"></i
             ></a>
             <button
               class="btn btn-danger"
