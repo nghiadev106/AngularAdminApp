@@ -14,6 +14,10 @@ export class SidebarMenuComponent implements OnInit {
     this.loadMenu();
   }
 
+  ngAfterViewInit(){
+    this.loadMenu();
+  }
+
   loadMenu() {
     this.dataService.get("/api/function/getlisthierarchy").subscribe(
       (response: any[]) => {

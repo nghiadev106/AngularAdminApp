@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageContstants } from '../core/common/message.constants';
+import { SystemConstants } from '../core/common/system.constants';
 import { UrlConstants } from '../core/common/url.constants';
 import { AuthenService } from '../core/services/authen.service';
 import { NotificationService } from '../core/services/notification.service';
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    localStorage.removeItem(SystemConstants.CURRENT_USER);
   }
   login() {
     this.loading = true;

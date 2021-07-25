@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Danh sách hóa đơn</h1>
+        <h1>Thống kê doanh thu</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -22,13 +22,11 @@
       <div class="flex-item">
         <div style="display: block">
           <canvas
+          height="200px"
             baseChart
-            width="400"
-            height="400"
             [datasets]="lineChartData"
             [labels]="lineChartLabels"
             [options]="lineChartOptions"
-            [colors]="lineChartColors"
             [legend]="lineChartLegend"
             [chartType]="lineChartType"
             [plugins]="lineChartPlugins"
@@ -49,12 +47,47 @@
           <th>Lợi nhuận</th>
         </tr>
         <tr *ngFor="let item of tableData">
-          <td>{{ item.Date | date: "dd/MM/yyyy" }}</td>
+          <td>{{ item.Date|date:'dd/MM/yyyy'  }}</td>
           <td>{{ item.Revenues | number }} VND</td>
           <td>{{ item.Benefit | number }} VND</td>
         </tr>
       </table>
       <button class="btn btn-primary" (click)="loadRevenues()">
+        Tải lại số liệu
+      </button>
+    </div>
+    <div class="col-md-7">
+      <div class="flex-item">
+        <div style="display: block">
+         <canvas baseChart
+         height="200px"
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <table
+        *ngIf="lineChartData && lineChartLabels"
+        class="table table-responsive table-condensed"
+      >
+        <tr>
+          <th>Tháng</th>
+          <th>Doanh thu</th>
+          <th>Lợi nhuận</th>
+        </tr>
+        <tr *ngFor="let item of tableData2">
+          <td>{{ item.Date }}</td>
+          <td>{{ item.Revenues | number }} VND</td>
+          <td>{{ item.Benefit | number }} VND</td>
+        </tr>
+      </table>
+      <button class="btn btn-primary" (click)="loadRevenuesMonth()">
         Tải lại số liệu
       </button>
     </div>

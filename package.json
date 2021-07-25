@@ -26,6 +26,7 @@
     "angular2-dropdown-multiselect": "^1.2.1",
     "chart.js": "^2.9.3",
     "chartjs-plugin-annotation": "^0.5.7",
+    "chartjs-plugin-datalabels": "^0.6.0",
     "moment": "^2.29.1",
     "ng2-charts": "^2.4.2",
     "ng2-daterangepicker": "^3.0.1",
