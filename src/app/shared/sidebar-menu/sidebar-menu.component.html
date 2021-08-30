@@ -5,6 +5,12 @@
     role="menu"
     data-accordion="false"
   >
+    <li class="nav-item">
+      <a routerLink="/main/home" class="nav-link">
+        <i class="nav-icon fas fa-th"></i>
+        <p>Trang chủ</p>
+      </a>
+    </li>
     <li class="nav-item" *ngFor="let item of functions">
       <a class="nav-link">
         <i class="nav-icon {{ item.IconCss }}"></i>
@@ -23,12 +29,11 @@
             routerLinkActive="active"
             class="nav-link"
           >
-             <i class="nav-icon {{ subItem.IconCss }}"></i>
+            <i class="nav-icon {{ subItem.IconCss }}"></i>
             <p>{{ subItem.Name }}</p>
           </a>
         </li>
       </ul>
     </li>
-
   </ul>
 </nav>

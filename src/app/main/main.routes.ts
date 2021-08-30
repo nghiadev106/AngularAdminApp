@@ -75,5 +75,5 @@ export const mainRoutes: Routes = [
 
       // { path: 'report', loadChildren: './report/report.module#ReportModule' }
     ],
-  },
+  }
 ];

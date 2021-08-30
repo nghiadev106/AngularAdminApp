@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import {Routes,RouterModule} from '@angular/router';
+import { ChartsModule, ThemeService } from 'ng2-charts';
 
 const homeRoutes: Routes = [
   //localhost:4200/main/home
@@ -14,7 +15,9 @@ const homeRoutes: Routes = [
   declarations: [HomeComponent],
   imports: [
     CommonModule,
+    ChartsModule,
     RouterModule.forChild(homeRoutes)
-  ]
+  ],
+  providers:[ThemeService]
 })
 export class HomeModule { }

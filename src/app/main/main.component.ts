@@ -3,7 +3,6 @@ import { environment } from 'src/environments/environment';
 import { SystemConstants } from '../core/common/system.constants';
 import { UrlConstants } from '../core/common/url.constants';
 import { LoggedInUser } from '../core/domain/loggedin.user';
-import { AuthenService } from '../core/services/authen.service';
 import { UtilityService } from '../core/services/utility.service';
 
 @Component({
@@ -11,13 +10,12 @@ import { UtilityService } from '../core/services/utility.service';
   templateUrl: "./main.component.html",
   styleUrls: ["./main.component.css"],
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit{
   public user: LoggedInUser;
   public functions: any[];
   public baseFolder: string = environment.BASE_API;
   constructor(
-    private utilityService: UtilityService,
-    private authenService: AuthenService
+    private utilityService: UtilityService
   ) {}
 
   ngOnInit() {
