@@ -135,35 +135,27 @@ export class HomeComponent implements OnInit {
   }
 
   loadRevenues() {
-    this._dataService
-      .get(
-        "/api/statistic/getrevenue?fromDate=" +
-          this.fromDate +
-          "&toDate=" +
-          this.toDate
-      )
+    this._dataService.get('/api/statistic/getrevenue?fromDate=' + this.fromDate + '&toDate=' + this.toDate)
       .subscribe((response: any[]) => {
         this.lineChartLabels = [];
         this.lineChartData = [];
-        var revenue = { data: [], label: "Doanh thu ngày" };
-        var benefit = {
-          data: [],
-          label: "Lợi nhuận ngày",
-          yAxisID: "y-axis-1",
-        };
+        var revenue = { data: [], label: 'Doanh thu' };
+        var benefit = { data: [], label: 'Lợi nhuận' };
         this.tableData = [];
         for (let item of response) {
-          revenue.data.push(item.Benefit);
-          benefit.data.push(item.Revenues);
-          this.lineChartLabels.push(moment(item.Date).format("DD/MM/YYYY"));
+          revenue.data.push(item.Revenues);
+          benefit.data.push(item.Benefit);
+          this.lineChartLabels.push(moment(item.Date).format('DD/MM/YYYY'));
           //push to table
           this.tableData = response;
+
         }
         this.lineChartData.push(revenue);
         this.lineChartData.push(benefit);
 
         this.refreshChart();
       });
+
   }
 
   //revenue by month use bar chart
@@ -193,9 +185,9 @@ export class HomeComponent implements OnInit {
     this._dataService
       .get(
         "/api/statistic/getrevenue-month?fromDate=" +
-          this.fromDate +
-          "&toDate=" +
-          this.toDate
+        this.fromDate +
+        "&toDate=" +
+        this.toDate
       )
       .subscribe((response: any[]) => {
         this.barChartLabels = [];
@@ -204,9 +196,9 @@ export class HomeComponent implements OnInit {
         var benefit = { data: [], label: "Lợi nhuận tháng" };
         this.tableData2 = [];
         for (let item of response) {
-          revenue.data.push(item.Benefit);
-          benefit.data.push(item.Revenues);
-          this.barChartLabels.push(item.Date);
+          revenue.data.push(item.Revenues);
+          benefit.data.push(item.Benefit);
+          this.barChartLabels.push(item.Month);
           //push to table
           this.tableData2 = response;
         }

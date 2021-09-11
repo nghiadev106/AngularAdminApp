@@ -25,7 +25,6 @@ export class SidebarMenuComponent implements OnInit {
           }
           return 0;
         });
-        console.log(this.functions);
       },
       (error) => this.dataService.handleError(error)
     );

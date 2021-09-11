@@ -47,7 +47,6 @@ export class UserComponent implements OnInit {
   constructor(private _dataService: DataService,
     private _notificationService: NotificationService,
     private _utilityService: UtilityService,
-    private _uploadService: UploadService,
     public _authenService: AuthenService,
     private daterangepickerOptions: DaterangepickerConfig,
     public fb: FormBuilder,
@@ -101,7 +100,6 @@ export class UserComponent implements OnInit {
           this.myRoles.push(role);
         }
         this.entity.BirthDay = moment(new Date(this.entity.BirthDay)).format('DD/MM/YYYY');
-
         console.log(this.entity.BirthDay);
       });
   }

@@ -8,7 +8,7 @@ const routes: Routes = [
    //localhost:4200/login
    { path: 'login', loadChildren: () => import('src/app/login/login.module').then(m => m.LoginModule)  },
    //localhost:4200/main
-   { path: 'main', loadChildren: () => import('src/app/main/main.module').then(m => m.MainModule),canActivate:[AuthGuard] }
+   { path: 'admin', loadChildren: () => import('src/app/main/main.module').then(m => m.MainModule),canActivate:[AuthGuard] }
 ];
 
 @NgModule({

@@ -37,9 +37,7 @@
               "node_modules/admin-lte/plugins/jquery/jquery.min.js",
               "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js",
               "node_modules/signalr/jquery.signalr.js",
-              "node_modules/admin-lte/dist/js/adminlte.min.js",
               "node_modules/alertifyjs/build/alertify.js",
-              "node_modules/admin-lte/dist/js/demo.js",
               "node_modules/moment/moment.js",
               "node_modules/chart.js/dist/Chart.bundle.min.js"
             ]

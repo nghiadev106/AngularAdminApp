@@ -73,7 +73,7 @@
         <button
           *ngIf="_authenService.hasPermission('ORDER', 'create')"
           class="btn btn-success"
-          routerLink="/main/order/add"
+          routerLink="/admin/order/add"
         >
           Thêm mới
         </button>
@@ -104,7 +104,7 @@
           <td>
             <a
               class="btn btn-primary"
-              routerLink="/main/order/detail/{{ item.ID }}"
+              routerLink="/admin/order/detail/{{ item.ID }}"
               data-toggle="tooltip"
               data-placement="top"
               title="Chi tiết hóa đơn"

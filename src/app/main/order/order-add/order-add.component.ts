@@ -65,7 +65,7 @@ export class OrderAddComponent implements OnInit {
     );
   }
   public goBack() {
-    this.utilityService.navigate("/main/order/index");
+    this.utilityService.navigate("/admin/order/index");
   }
 
   //Save change for modal popup
@@ -80,7 +80,7 @@ export class OrderAddComponent implements OnInit {
             this.notificationService.printSuccessMessage(
               MessageContstants.CREATED_OK_MSG
             );
-            this.utilityService.navigate("/main/order");
+            this.utilityService.navigate("/admin/order");
           },
           (error) => this._dataService.handleError(error)
         );

@@ -31,7 +31,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   public goBack() {
-    this.utilityService.navigate("/main/order/index");
+    this.utilityService.navigate("/admin/order/index");
   }
 
   public loadOrder(id: number) {
@@ -47,7 +47,6 @@ export class OrderDetailComponent implements OnInit {
       .get("/api/order/exportExcel/" + this.orderId.toString())
       .subscribe(
         (response: any) => {
-          console.log(response);
           window.open(this.baseFolder + response.Message);
         },
         (error) => this._dataService.handleError(error)
@@ -63,7 +62,6 @@ export class OrderDetailComponent implements OnInit {
           for (var item of this.orderDetails) {
             this.totalAmount = this.totalAmount + item.Quantity * item.Price;
           }
-          console.log(this.totalAmount);
         },
         (error) => this._dataService.handleError(error)
       );

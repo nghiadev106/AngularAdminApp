@@ -30,8 +30,7 @@
             [legend]="lineChartLegend"
             [chartType]="lineChartType"
             [plugins]="lineChartPlugins"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"
+
           ></canvas>
         </div>
       </div>
@@ -82,7 +81,7 @@
           <th>Lợi nhuận</th>
         </tr>
         <tr *ngFor="let item of tableData2">
-          <td>{{ item.Date }}</td>
+          <td>{{ item.Month }}</td>
           <td>{{ item.Revenues | number }} VND</td>
           <td>{{ item.Benefit | number }} VND</td>
         </tr>
